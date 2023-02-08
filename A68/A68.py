@@ -4,24 +4,14 @@ from spline_data import t, y
 from bsplines import bsplines
 import matplotlib.pyplot as plt
 
-A = [None for i in range(len(t))] 
-G = [None for i in range(len(t))] 
 A = np.zeros((len(y), 13))
 G = np.zeros((len(y), 13))
 b = y.reshape(-1,1)
 
-""" CODE HERE
-in a for loop use bsplines function to calculate g_k,
-its first and second derivatives. Here you care about all sample points Use these values to calculate A, bbased on part (a)
-"""
 for i in range(len(t)):
     g, gp, gpp = bsplines(t[i])
     A[i] = g
     G[i] = gpp
-
-""" CODE HERE
-in another for loop, check only the points we discussed in class.
-I.e., points separating the segments. Compute G based on these and part (a) """
 
 x = cp.Variable(13)
 # Define the objective function
